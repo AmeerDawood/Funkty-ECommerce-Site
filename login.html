@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Funkty | Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <section
+      class="flex justify-center items-center w-full min-h-screen bg-gray-50 py-10"
+    >
+      <div
+        class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-center"
+      >
+        <h2 class="mb-6 text-2xl font-semibold text-gray-800">
+          Login to Funkty
+        </h2>
+        <form class="space-y-5 text-left" onsubmit="handleLogin(event)">
+          <div>
+            <label for="email" class="block font-semibold mb-2 text-gray-700"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="Enter your email"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-700 text-base transition"
+            />
+          </div>
+          <div>
+            <label for="password" class="block font-semibold mb-2 text-gray-700"
+              >Password</label
+            >
+            <input
+              type="password"
+              id="password"
+              required
+              placeholder="Enter your password"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-700 text-base transition"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-gray-800 text-white text-base font-medium py-3 rounded-lg mt-2 hover:bg-gray-700 transition"
+          >
+            Log In
+          </button>
+          <p class="text-sm text-gray-600 mt-4 text-center">
+            Don't have an account?
+            <a href="#" class="text-blue-600 hover:underline">Register</a>
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      function handleLogin(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (email === "admin@funkty.com" && password === "1234") {
+          alert("Login successful!");
+          window.location.href = "home.html";
+        } else {
+          alert("Invalid email or password. Please try again.");
+        }
+      }
+    </script>
+  </body>
+</html>
