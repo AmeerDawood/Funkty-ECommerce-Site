@@ -3,452 +3,451 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Funkty</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Funkty — Premium Phone, Earbud & Watch Accessories</title>
+    <meta
+      name="description"
+      content="Funkty — stylish mobile covers, earbud cases and watches."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-
-      .cart-icon {
-        position: relative;
-      }
-
-      #cart-count {
-        position: absolute;
-        top: -8px;
-        right: -10px;
-        background-color: red;
-        color: white;
-        font-size: 12px;
-        font-weight: bold;
-        padding: 2px 6px;
-        border-radius: 50%;
-      }
-
-      #scrollToTopBtn {
-        position: fixed;
-        bottom: 30px;
-        right: 25px;
-        z-index: 999;
-        display: none;
-        background-color: #333;
-        color: white;
-        border: none;
-        padding: 12px 16px;
-        border-radius: 50%;
-        font-size: 20px;
-        cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        transition: background 0.3s ease;
-      }
-
-      #scrollToTopBtn:hover {
-        background-color: #555;
-      }
-
-      /* Cart Sidebar */
-      .cart-sidebar {
-        position: fixed;
-        right: 0;
-        top: 0;
-        width: 0;
-        height: 100%;
-        background-color: #fff;
-        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
-        overflow-x: hidden;
-        padding: 20px;
-        transition: width 0.3s ease;
-        z-index: 1000;
-        visibility: hidden;
-        opacity: 0;
-      }
-
-      .cart-sidebar.open {
-        width: 280px;
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .cart-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .cart-header h3 {
-        margin: 0;
-        font-size: 20px;
-      }
-
-      .close-btn {
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-      }
-
-      #cartItemsList {
-        list-style-type: none;
-        padding-left: 0;
-        margin-top: 15px;
-      }
-
-      #cartItemsList li {
-        padding: 6px 0;
-        border-bottom: 1px solid #ddd;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <header class="w-full">
-      <!-- Hamburger Menu -->
-      <div class="md:hidden flex justify-end px-4 py-3 bg-white shadow">
-        <button onclick="toggleMenu()" class="space-y-1">
-          <span class="block w-6 h-0.5 bg-black"></span>
-          <span class="block w-6 h-0.5 bg-black"></span>
-          <span class="block w-6 h-0.5 bg-black"></span>
-        </button>
+    <!-- Announcement bar -->
+    
+
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="container">
+        <a href="home.html" class="logo">Funkty<span>.</span></a>
+
+        <ul class="nav-links">
+          <li><a href="#top" class="active">Home</a></li>
+          <li><a href="#categories">Shop</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="icon-btn" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+          <button class="icon-btn" aria-label="Cart" onclick="toggleCart()">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count">0</span>
+          </button>
+          <div class="nav-auth">
+            <a href="login.html" class="btn btn-outline">Log in</a>
+            <a href="signup.html" class="btn btn-primary">Sign up</a>
+          </div>
+          <button
+            class="icon-btn menu-toggle"
+            aria-label="Menu"
+            onclick="toggleMenu()"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
       </div>
 
-      <!-- Mobile Menu -->
-      <ul
-        class="mobile-menu hidden flex-col bg-white shadow px-4 py-2 space-y-2 md:hidden"
-      >
-        <li><a href="#nav" class="block py-1 hover:text-blue-600">HOME</a></li>
-        <li>
-          <a href="#categories" class="block py-1 hover:text-blue-600">SHOP</a>
-        </li>
-        <li>
-          <a href="#best-seller" class="block py-1 hover:text-blue-600"
-            >PRODUCT</a
-          >
-        </li>
-      </ul>
-
-      <!-- Navbar -->
-      <nav id="nav" class="bg-white shadow-md sticky top-8 z-50">
-        <div
-          class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center"
-        >
-          <div class="logo text-2xl font-bold text-gray-800">
-            <a href="/home.html" class="hover:text-blue-600">Funkty</a>
-          </div>
-          <div class="hidden md:flex items-center space-x-12">
-            <ul class="flex space-x-6 font-medium text-gray-700">
-              <li><a href="#nav" class="hover:text-blue-600">HOME</a></li>
-              <li>
-                <a href="#categories" class="hover:text-blue-600">SHOP</a>
-              </li>
-              <li>
-                <a href="#best-seller" class="hover:text-blue-600">PRODUCT</a>
-              </li>
-            </ul>
-            <div class="flex items-center space-x-4">
-              <a href="#" class="text-gray-600 hover:text-blue-600"
-                ><i class="fas fa-search"></i
-              ></a>
-              <a
-                href="javascript:void(0);"
-                class="relative text-gray-600 hover:text-blue-600"
-                onclick="toggleCart()"
-              >
-                <i class="fas fa-cart-plus"></i>
-                <span
-                  id="cart-count"
-                  class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-1 rounded-full"
-                  >0</span
-                >
-              </a>
-              <a
-                href="login.html"
-                class="text-sm font-medium text-gray-600 hover:text-blue-600 border px-3 py-1 rounded"
-                >LOG IN / REGISTER</a
-              >
-            </div>
-          </div>
+      <nav class="mobile-menu">
+        <a href="#top" onclick="toggleMenu()">Home</a>
+        <a href="#categories" onclick="toggleMenu()">Shop</a>
+        <a href="#products" onclick="toggleMenu()">Products</a>
+        <a href="contact.html">Contact</a>
+        <div class="nav-auth">
+          <a href="login.html" class="btn btn-outline">Log in</a>
+          <a href="signup.html" class="btn btn-primary">Sign up</a>
         </div>
       </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero pt-24">
-      <div class="hero-content text-center">
-        <h1 style="font-weight: bold">Welcome to Funkty</h1>
-        <p>
-          Your ultimate destination for stylish mobile phone, earbuds covers and
-          watches
-        </p>
-        <button
-          class="shop-now-btn"
-          onclick="scrollToSection('featured-products')"
-        >
-          Shop Now
-        </button>
-      </div>
-    </section>
-
-    <!-- Featured Products Section -->
-    <section class="featured-products" id="featured-products">
-      <h2>Featured Products</h2>
-      <div class="category-grid">
-        <div class="category-card">
-          <img
-            src="/assets/phone1.jpeg"
-            alt="Featured Product"
-            class="product-image"
-          />
-        </div>
-        <div class="category-card">
-          <img
-            src="/assets/cover 2.jpg"
-            alt="Featured Product"
-            class="product-image"
-          />
-        </div>
-        <div class="category-card">
-          <img
-            src="/assets/cover 3.jpg"
-            alt="Featured Product"
-            class="product-image"
-          />
-        </div>
-        <div class="product-card">
-          <h2>Mobile Covers</h2>
-          <p>
-            Meet your new Phone. Now, it's covered up so, you should capture and
-            enjoy every moment of life.
-          </p>
-          <button class="shop-now-btn">Buy Now</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="categories" id="categories">
-      <h2 style="font-size: x-large">Categories</h2>
-      <br />
-      <div class="category-grid">
-        <div class="category-card">
-          <img
-            src="/assets/phone2.jpeg"
-            alt="Category 1"
-            class="category-image"
-            style="margin-bottom: -10px"
-          />
-          <h3>Mobile Covers</h3>
-          <button class="view-category-btn" onclick="addToCart(this)">
-            Add to Cart
-          </button>
-        </div>
-        <div class="category-card">
-          <img
-            src="/assets/charging1.png"
-            alt="Category 2"
-            class="category-image"
-            style="margin-top: 15px; margin-left: 25px;"
-          />
-          <h3>Earbud Covers</h3>
-          <button class="view-category-btn" onclick="addToCart(this)">
-            Add to Cart
-          </button>
-        </div>
-        <div class="category-card">
-          <img
-            src="/assets/watch1.webp"
-            alt="Category 4"
-            class="category-image"
-            style="margin-top: 15px"
-          />
-          <h3>Watch Brand</h3>
-          <button class="view-category-btn" onclick="addToCart(this)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Best Seller Section -->
-    <section class="seller" id="best-seller">
-      <h2>Best Seller</h2>
-      <div class="seller-grid">
-        <div class="seller-card">
-          <h3>Mobile Covers</h3>
-          <div class="item-grid">
-            <div class="item-card">
-              <img src="/assets/phone4.png" alt="Mobile Cover 1" />
-              <p>Matte Black Mobile Cover</p>
-            </div>
-            <div class="item-card">
-              <img src="/assets/phone8.png" alt="Mobile Cover 2" />
-              <p>Transparent</p>
-            </div>
-            <div class="item-card">
-              <img src="/assets/phone6.png" alt="Mobile Cover 3" />
-              <p>Carbon Fibre Cover</p>
-            </div>
-            <div class="item-card">
-              <img src="/assets/phone7.png" alt="Mobile Cover 4" />
-              <p>Leather Cover</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="seller-card">
-          <h3>Earbuds Covers</h3>
-          <div class="item-grid">
-            <div class="item-card">
-              <img src="/assets/charg2.png" alt="Earbuds Cover 1" />
-              <p>Carbon Fabric</p>
-            </div>
-            <div class="item-card">
-              <img src="/assets/charg3.png" alt="Earbuds Cover 2" />
-              <p>Transparent</p>
-            </div>
-            <div class="item-card">
-              <img src="/assets/charg4.png" alt="Earbuds Cover 3" />
-              <p>Ear Piece</p>
-            </div>
-            <div class="item-card">
-              <img src="/assets/charg5.png" alt="Earbuds Cover 4" />
-              <p>Head Set</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer>
-      <div class="footer-content">
-        <div class="footer-left">
-          <h2>Funkty</h2>
-          <p>Your one-stop shop for mobile and earbuds covers.</p>
-          <div class="social-links">
-            <a href="#"><img src="/assets/instagram.png" alt="Instagram" /></a>
-            <a href="#"><img src="/assets/twitter.png" alt="Twitter" /></a>
-          </div>
-        </div>
-
-        <div class="footer-right">
-          <div class="footer-column">
-            <h5>INFORMATION</h5>
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container">
+          <div>
+            <span class="eyebrow">New Collection 2025</span>
+            <h1>Protect your tech.<br />Express your style.</h1>
             <p>
-              <button>Shipping</button>
-              <button>Warranty & Authenticity</button>
-              <button>Terms & Conditions</button>
-              <button>Privacy Policy</button>
+              Premium mobile covers, earbud cases and watches — designed to look
+              good and built to last.
             </p>
+            <div class="hero-cta">
+              <a href="#products" class="btn btn-light"
+                >Shop Now <i class="fas fa-arrow-right"></i
+              ></a>
+              <a href="#categories" class="btn btn-ghost-light"
+                >Browse Categories</a
+              >
+            </div>
+            <div class="hero-stats">
+              <div><strong>10k+</strong><span>Happy customers</span></div>
+              <div><strong>250+</strong><span>Unique designs</span></div>
+              <div><strong>4.9★</strong><span>Average rating</span></div>
+            </div>
           </div>
-          <div class="footer-column" id="contact">
-            <h5>HELP</h5>
-            <p>
-              <button><a href="/contact.html">Contact Us</a></button><br />
-              <button>About Us</button><br />
-              <button>Reviews</button>
-              <button>Terms of Services</button>
-              <button>Refund Policy</button>
-            </p>
-          </div>
-          <div class="footer-column">
-            <h5>SERVICES</h5>
-            <p>
-              <button>SALE</button><br />
-              <button>QUICK SHIP</button>
-              <button>NEW DESIGNS</button>
-              <button>Protection Plan</button>
-              <button>Gift Cards</button>
-            </p>
+
+          <div class="hero-visual">
+            <img src="assets/phone3.png" alt="Black leather phone cover" />
+            <div class="hero-badge">
+              <i class="fas fa-shield-alt"></i>
+              <div>
+                <strong>Drop-tested</strong>
+                <span>Military-grade protection</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="footer-bottom">
-        <div class="footer-left-bottom">
+      <!-- Features strip -->
+      <section class="features">
+        <div class="container">
+          <div class="feature">
+            <i class="fas fa-truck"></i>
+            <div>
+              <strong>Fast Delivery</strong
+              ><span>Nationwide in 2–4 days</span>
+            </div>
+          </div>
+          <div class="feature">
+            <i class="fas fa-undo"></i>
+            <div>
+              <strong>Easy Returns</strong><span>7-day hassle-free</span>
+            </div>
+          </div>
+          <div class="feature">
+            <i class="fas fa-lock"></i>
+            <div>
+              <strong>Secure Payment</strong><span>100% protected checkout</span>
+            </div>
+          </div>
+          <div class="feature">
+            <i class="fas fa-headset"></i>
+            <div>
+              <strong>24/7 Support</strong><span>We're here to help</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured -->
+      <section class="section" id="featured">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Handpicked</span>
+              <h2>Featured Products</h2>
+            </div>
+            <a href="#products" class="link-arrow"
+              >View all <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div class="featured-grid">
+            <div class="featured-tile tall">
+              <img src="assets/image.png" alt="Crescent moon phone cover" />
+              <span class="tile-label">Midnight Moon Cover</span>
+            </div>
+            <div class="featured-tile contain">
+              <img src="assets/phone2.jpeg" alt="Snake print phone cover" />
+              <span class="tile-label">Serpent Print</span>
+            </div>
+            <div class="featured-tile contain">
+              <img src="assets/travel1.png" alt="Leather travel wallet" />
+              <span class="tile-label">Travel Wallet</span>
+            </div>
+            <div class="featured-promo">
+              <span class="eyebrow">Mobile Covers</span>
+              <h3>Meet your new phone.</h3>
+              <p>
+                Now it's covered — so capture and enjoy every moment of life
+                without worrying about scratches or drops.
+              </p>
+              <a href="#products" class="btn btn-light"
+                >Buy Now <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories -->
+      <section class="section section-soft" id="categories">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Shop by</span>
+              <h2>Categories</h2>
+              <p>Find the perfect fit for every device you own.</p>
+            </div>
+          </div>
+
+          <div class="category-grid">
+            <a href="#products" class="category-card" data-filter="covers">
+              <div class="category-media contain">
+                <img src="assets/phone2.jpeg" alt="Mobile covers" />
+              </div>
+              <div class="category-body">
+                <div>
+                  <h3>Mobile Covers</h3>
+                  <span>120+ designs</span>
+                </div>
+                <span class="circle-arrow"
+                  ><i class="fas fa-arrow-right"></i
+                ></span>
+              </div>
+            </a>
+            <a href="#products" class="category-card" data-filter="earbuds">
+              <div class="category-media contain">
+                <img src="assets/charging1.png" alt="Earbud covers" />
+              </div>
+              <div class="category-body">
+                <div>
+                  <h3>Earbud Covers</h3>
+                  <span>60+ designs</span>
+                </div>
+                <span class="circle-arrow"
+                  ><i class="fas fa-arrow-right"></i
+                ></span>
+              </div>
+            </a>
+            <a href="#products" class="category-card" data-filter="accessories">
+              <div class="category-media contain">
+                <img src="assets/watch1.webp" alt="Watches" />
+              </div>
+              <div class="category-body">
+                <div>
+                  <h3>Watches & More</h3>
+                  <span>40+ products</span>
+                </div>
+                <span class="circle-arrow"
+                  ><i class="fas fa-arrow-right"></i
+                ></span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Best sellers -->
+      <section class="section" id="products">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Most loved</span>
+              <h2>Best Sellers</h2>
+            </div>
+            <div class="tabs" role="tablist">
+              <button class="tab active" data-tab="all">All</button>
+              <button class="tab" data-tab="covers">Mobile Covers</button>
+              <button class="tab" data-tab="earbuds">Earbuds</button>
+              <button class="tab" data-tab="accessories">Accessories</button>
+            </div>
+          </div>
+
+          <div class="product-grid" id="productGrid"></div>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section class="section" style="padding-top: 0">
+        <div class="container">
+          <div class="newsletter">
+            <div>
+              <h2>Get 10% off your first order</h2>
+              <p>Join our newsletter for new drops and exclusive deals.</p>
+            </div>
+            <form onsubmit="subscribe(event)">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                required
+                aria-label="Email"
+              />
+              <button type="submit" class="btn btn-light">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="home.html" class="logo">Funkty<span>.</span></a>
+            <p>
+              Your one-stop shop for mobile covers, earbud cases and watches.
+            </p>
+            <div class="social-links">
+              <a href="#" aria-label="Instagram"
+                ><img src="assets/instagram.png" alt="Instagram"
+              /></a>
+              <a href="#" aria-label="Twitter"
+                ><img src="assets/twitter.png" alt="Twitter"
+              /></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h5>Information</h5>
+            <ul>
+              <li><a href="#">Shipping</a></li>
+              <li><a href="#">Warranty & Authenticity</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Help</h5>
+            <ul>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Reviews</a></li>
+              <li><a href="#">Refund Policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Services</h5>
+            <ul>
+              <li><a href="#">Sale</a></li>
+              <li><a href="#">Quick Ship</a></li>
+              <li><a href="#">New Designs</a></li>
+              <li><a href="#">Gift Cards</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
           <p>&copy; 2025 Funkty. All rights reserved.</p>
-        </div>
-        <div class="footer-right-images">
-          <img src="/assets/foot1.png" alt="foot1" />
-          <img src="/assets/foot2.png" alt="foot2" />
-          <img src="/assets/foot3.png" alt="foot3" />
+          <div class="payments">
+            <img src="assets/foot1.png" alt="Visa" />
+            <img src="assets/foot2.png" alt="Payment method" />
+            <img src="assets/foot3.png" alt="Payment method" />
+          </div>
         </div>
       </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <button
-      id="scrollToTopBtn"
-      title="Go to top"
-      class="fixed bottom-6 right-6 w-12 h-14 bg-gradient-to-tr from-gray-600 to-black text-white rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 ease-in-out flex items-center justify-center z-50 focus:outline-none focus:ring-4 focus:ring-gray-300"
-    >
-      <i class="fas fa-arrow-up text-2xl"></i>
+    <!-- Cart drawer -->
+    <div class="overlay" id="overlay" onclick="toggleCart(false)"></div>
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+      <div class="cart-head">
+        <h3>Your Cart</h3>
+        <button class="icon-btn" onclick="toggleCart(false)" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <ul class="cart-items" id="cartItems"></ul>
+      <div class="cart-foot">
+        <div class="cart-total">
+          <span>Subtotal</span><span id="cartTotal">Rs 0</span>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="checkout()">
+          Checkout <i class="fas fa-lock"></i>
+        </button>
+      </div>
+    </aside>
+
+    <button class="scroll-top" id="scrollTop" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Cart Sidebar -->
-    <div id="cartSidebar" class="cart-sidebar">
-      <div class="cart-header">
-        <h3>Your Cart</h3>
-        <hr />
-        <button onclick="toggleCart()" class="close-btn">&times;</button>
-      </div>
-      <ul id="cartItemsList"></ul>
-    </div>
-
-    <!-- JS -->
+    <script src="main.js"></script>
     <script>
-      function toggleMenu() {
-        const menu = document.querySelector(".mobile-menu");
-        menu.classList.toggle("hidden");
+      // Product catalogue — edit names, prices and images here.
+      // `contain: true` is for product photos on a white background.
+      const products = [
+        { id: "p1", name: "Matte Black Cover", cat: "covers", label: "Mobile Cover", price: 1299, old: 1799, img: "assets/phone4.png", badge: "sale", rating: 5, reviews: 128 },
+        { id: "p2", name: "Crystal Clear Cover", cat: "covers", label: "Mobile Cover", price: 999, img: "assets/phone8.png", contain: true, rating: 4, reviews: 96 },
+        { id: "p3", name: "Carbon Fibre Cover", cat: "covers", label: "Mobile Cover", price: 1499, img: "assets/phone6.png", badge: "new", rating: 5, reviews: 54 },
+        { id: "p4", name: "Leather Cover", cat: "covers", label: "Mobile Cover", price: 1899, img: "assets/phone7.png", contain: true, rating: 5, reviews: 211 },
+        { id: "p5", name: "Carbon Fabric Case", cat: "earbuds", label: "Earbud Cover", price: 899, img: "assets/charg2.png", contain: true, badge: "hot", rating: 5, reviews: 77 },
+        { id: "p6", name: "Transparent Case", cat: "earbuds", label: "Earbud Cover", price: 699, old: 899, img: "assets/charg3.png", contain: true, badge: "sale", rating: 4, reviews: 43 },
+        { id: "p7", name: "Wireless Neckband", cat: "earbuds", label: "Ear Piece", price: 2499, img: "assets/charg4.png", contain: true, rating: 4, reviews: 65 },
+        { id: "p8", name: "Studio Headset", cat: "earbuds", label: "Head Set", price: 3999, img: "assets/charg5.png", contain: true, badge: "new", rating: 5, reviews: 32 },
+        { id: "p9", name: "Sport Digital Watch", cat: "accessories", label: "Watch", price: 2999, old: 3499, img: "assets/watch1.webp", contain: true, badge: "sale", rating: 4, reviews: 88 },
+        { id: "p10", name: "Leather Travel Wallet", cat: "accessories", label: "Accessory", price: 1599, img: "assets/travel1.png", contain: true, rating: 5, reviews: 41 },
+        { id: "p11", name: "Galaxy Print Cover", cat: "covers", label: "Mobile Cover", price: 1199, img: "assets/cover 2.jpg", contain: true, rating: 4, reviews: 27 },
+        { id: "p12", name: "Classic Pattern Cover", cat: "covers", label: "Mobile Cover", price: 1199, img: "assets/cover 3.jpg", contain: true, rating: 4, reviews: 19 },
+      ];
+
+      function stars(n) {
+        let html = "";
+        for (let i = 1; i <= 5; i++)
+          html += `<i class="${i <= n ? "fas" : "far"} fa-star"></i>`;
+        return html;
       }
 
-      function toggleCart() {
-        const cart = document.getElementById("cartSidebar");
-        cart.classList.toggle("open");
+      function renderProducts() {
+        document.getElementById("productGrid").innerHTML = products
+          .map(
+            (p) => `
+          <article class="product-card" data-id="${p.id}" data-cat="${p.cat}"
+            data-name="${p.name}" data-price="${p.price}" data-img="${p.img}">
+            <div class="product-media ${p.contain ? "contain" : ""}">
+              <img src="${p.img}" alt="${p.name}" loading="lazy" />
+              ${p.badge ? `<span class="badge ${p.badge}">${p.badge}</span>` : ""}
+              <button class="wish-btn" aria-label="Add to wishlist"
+                onclick="this.classList.toggle('active')"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="product-body">
+              <span class="product-cat">${p.label}</span>
+              <h3 class="product-title">${p.name}</h3>
+              <div class="rating">${stars(p.rating)}<span>(${p.reviews})</span></div>
+              <div class="price-row">
+                <span class="price">${formatPrice(p.price)}</span>
+                ${p.old ? `<span class="price-old">${formatPrice(p.old)}</span>` : ""}
+              </div>
+              <button class="btn btn-primary btn-block add-btn" onclick="addToCart(this)">
+                <i class="fas fa-shopping-bag"></i> Add to Cart
+              </button>
+            </div>
+          </article>`
+          )
+          .join("");
       }
 
-      const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-      window.addEventListener("scroll", () => {
-        scrollToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-      });
-
-      scrollToTopBtn.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-
-      let cartItems = [];
-      function addToCart(button) {
-        const productName =
-          button
-            .closest(".category-card, .product-card, .item-card")
-            ?.querySelector("h3, p")?.innerText || "Product";
-        cartItems.push(productName);
-        updateCartUI();
-        button.innerText = "Added!";
-        button.disabled = true;
-        button.style.backgroundColor = "#aaa";
-        setTimeout(() => {
-          button.innerText = "Add to Cart";
-          button.disabled = false;
-          button.style.backgroundColor = "";
-        }, 2000);
-      }
-
-      function updateCartUI() {
-        document.getElementById("cart-count").innerText = cartItems.length;
-        const list = document.getElementById("cartItemsList");
-        list.innerHTML = "";
-        cartItems.forEach((item) => {
-          const li = document.createElement("li");
-          li.textContent = item;
-          list.appendChild(li);
+      function filterProducts(cat) {
+        document.querySelectorAll(".tab").forEach((t) =>
+          t.classList.toggle("active", t.dataset.tab === cat)
+        );
+        document.querySelectorAll(".product-card").forEach((card) => {
+          card.classList.toggle(
+            "hidden",
+            cat !== "all" && card.dataset.cat !== cat
+          );
         });
       }
+
+      function subscribe(e) {
+        e.preventDefault();
+        e.target.reset();
+        showToast("Subscribed! Check your inbox for 10% off.");
+      }
+
+      renderProducts();
+
+      document
+        .querySelectorAll(".tab")
+        .forEach((t) =>
+          t.addEventListener("click", () => filterProducts(t.dataset.tab))
+        );
+
+      // Clicking a category card jumps to products filtered by that category
+      document.querySelectorAll(".category-card").forEach((c) =>
+        c.addEventListener("click", () => filterProducts(c.dataset.filter))
+      );
     </script>
   </body>
 </html>
