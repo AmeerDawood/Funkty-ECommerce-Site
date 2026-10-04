@@ -28,7 +28,7 @@ Funkty is a responsive e-commerce front-end for mobile covers, earbud cases and 
     <td width="50%" align="center"><b>Contact Page</b></td>
   </tr>
   <tr>
-    <td width="50%" align="center"><img src="screenshots/cart.png" alt="Cart drawer" width="100%" /></td>
+    <td width="50%" align="center"><img src="screenshots/card.png" alt="Cart drawer" width="100%" /></td>
     <td width="50%" align="center"><img src="screenshots/contact.png" alt="Contact page" width="100%" /></td>
   </tr>
   <tr>
